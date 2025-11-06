@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Arpit Sen - Portfolio</title>
+  <style>
+    :root {
+      --bg-color: #0a0a0a;
+      --text-color: #ffffff;
+      --accent-color: #00d4ff;
+      --card-bg: #1a1a1a;
+      --btn-primary: #00d4ff;
+      --btn-secondary: #333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: var(--bg-color);
+      z-index: 100;
+      padding: 1rem 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin-left: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 100px 2rem 50px;
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .hero-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1;
+      animation: fadeIn 1s ease-in;
+      min-width: 280px;
+      max-width: 600px;
+    }
+
+    .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .animated-text span {
+      color: var(--accent-color);
+      font-weight: bold;
+      animation: blink 2s infinite;
+    }
+
+    .hero-image {
+      flex: 1;
+      text-align: center;
+      animation: fadeIn 1s ease-in;
+      min-width: 280px;
+      max-width: 300px;
+      margin-top: 1rem;
+    }
+
+    .glowing-circle {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent-color), transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      box-shadow: 0 0 30px var(--accent-color);
+      position: relative;
+      overflow: visible;
+    }
+
+    .glowing-circle img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 15px #00d4ff88;
+      border: 4px solid var(--bg-color);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Sticker Style: subtle layered shadow shapes around the photo */
+    .glowing-circle::before,
+    .glowing-circle::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .glowing-circle::before {
+      width: 220px;
+      height: 220px;
+      top: -10px;
+      left: -10px;
+      background: rgba(0, 212, 255, 0.2);
+      filter: blur(15px);
+    }
+
+    .glowing-circle::after {
+      width: 240px;
+      height: 240px;
+      top: -20px;
+      left: -20px;
+      border: 2px dashed var(--accent-color);
+      opacity: 0.5;
+    }
+
+    /* Sections */
+    .about,
+    .services,
+    .projects,
+    .contact {
+      padding: 100px 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      animation: fadeIn 1s ease-in;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+    }
+
+    /* About */
+    .about p {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      padding: 1rem;
+      text-align: center;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .skill-card:hover {
+      transform: scale(1.05);
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      text-align: center;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover {
+      transform: scale(1.05);
+    }
+
+    /* Projects */
+    .project-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .status {
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+
+    /* Contact */
+    .contact p {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .social-icons a {
+      color: var(--text-color);
+      font-size: 3rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: var(--accent-color);
+      transform: scale(1.1);
+    }
+
+    /* Buttons */
+    .btn-primary,
+    .btn-secondary {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-primary {
+      background: var(--btn-primary);
+      color: var(--bg-color);
+    }
+
+    .btn-primary:hover {
+      background: #0099cc;
+    }
+
+    .btn-secondary {
+      background: var(--btn-secondary);
+      color: var(--text-color);
+    }
+
+    .btn-secondary:hover {
+      background: #555;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      background: var(--card-bg);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes blink {
+      0%,
+      50% {
+        opacity: 1;
+      }
+      51%,
+      100% {
+        opacity: 0;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .services-grid,
+      .skills {
+        grid-template-columns: 1fr;
+      }
+
+      .social-icons {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <h1 class="nav-logo">Arpit Sen</h1>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section id="hero" class="hero">
+    <div class="hero-container">
+      <div class="hero-text">
+        <h1>Heyy, I'm Arpit Sen 👋</h1>
+        <p>I'm a Web Developer and more...</p>
+        <div class="animated-text">
+          <span>Web Developer | Graphic Designer | Excel Expert</span>
+        </div>
+        <a href="#projects"><button class="btn-primary">View Projects</button></a>
+      </div>
+      <div class="hero-image">
+        <div class="glowing-circle">
+          <img src="profile-photo.jpg.jpg" alt="Arpit Sen" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About Me</h2>
+      <p>
+        I'm a passionate Web Developer and Graphic Designer who loves turning ideas into digital solutions.
+        Alongside web development, I also work with MS Office tools like Excel, PowerPoint, and Word for creative presentations and efficient data management.
+      </p>
+      <a href="E:/resume main.pdf" download>
+        <button class="btn-secondary">Download Resume</button>
+      </a>
+      <div class="skills">
+        <div class="skill-card">HTML</div>
+        <div class="skill-card">CSS</div>
+        <div class="skill-card">JavaScript</div>
+        <div class="skill-card">Python</div>
+        <div class="skill-card">MS Office</div>
+        <div class="skill-card">Excel</div>
+        <div class="skill-card">PowerPoint</div>
+        <div class="skill-card">Word</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="services">
+    <div class="container">
+      <h2>Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Web Development</h3>
+        </div>
+        <div class="service-card">
+          <h3>Graphic Design</h3>
+        </div>
+        <div class="service-card">
+          <h3>MS Office</h3>
+        </div>
+        <div class="service-card">
+          <h3>Excel & PowerPoint</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="project-card">
+        <h3>DigiMunshi</h3>
+        <p class="status">In Progress</p>
+        <p>
+          DigiMunshi is my ongoing personal project — an expense tracker for home budgets. It includes budget warnings via SMS and categorized expenses like food,
+          groceries, and private expenses.
+        </p>
+        <button class="btn-secondary">Coming Soon</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Contact Me</h2>
+      <p>
+        Let's connect! Reach out to me directly via email, Instagram, or LinkedIn for collaborations, inquiries, or just to say hi.
+      </p>
+      <div class="social-icons">
+        <a href="mailto:senarpit180@gmail.com" title="Email Me"><i class="fas fa-envelope"></i></a>
+        <a href="https://instagram.com/arpitsen__" target="_blank" rel="noopener noreferrer" title="Follow on Instagram"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="http://www.linkedin.com/in/arpit-sen-dev" target="_blank" rel="noopener noreferrer" title="Connect on LinkedIn"
+          ><i class="fab fa-linkedin"></i
+        ></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 Arpit Sen | Built with ❤️ using HTML/CSS</p>
+  </footer>
+
+  <!-- Font Awesome for icons -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</body>
+</html>
